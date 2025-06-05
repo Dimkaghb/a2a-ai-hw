@@ -1,0 +1,56 @@
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# 🗃️ Environments
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# 📦 Packaging
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+*.spec
+
+# 🛠️ VSCode & IDEs
+.vscode/
+.idea/
+*.swp
+
+# 📜 Logs
+*.log
+*.tmp
+
+# 💥 OS-generated files
+.DS_Store
+Thumbs.db
+
+# 🤖 LlamaIndex / Langchain cache
+storage/
+index_store/
+.llama_index_cache/
+.cache/
+
+# 🚀 Jupyter
+.ipynb_checkpoints/
+
+# 🔐 Credentials
+*.key
+*.pem
+*.crt
+openai_key.txt
+*.secret
+
+# 📁 Data (optional)
+data/*
+!data/.gitkeep

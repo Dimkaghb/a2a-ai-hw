@@ -1,0 +1,4 @@
+llama-index==0.12.40
+langchain
+openai
+python-dotenv
