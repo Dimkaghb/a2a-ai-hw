@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
-    raise ValueError("Не найден OPENAI_API_KEY! Проверь .env")
+    raise ValueError("Не найден OPENAI_API_KEY! Проверь .env файл")
 
 from llama_index.core import ( # Changed import
     VectorStoreIndex,
@@ -25,15 +25,15 @@ class LlamaIndexAgent:
         Settings.chunk_overlap = 20 # Example setting, adjust as needed
 
         self.index_dir = "indexes"
-        self.docs_dir = "data/raw_docs"
+        self.docs_dir = "data/people_docs"
 
         if rebuild_index or not os.path.exists(self.index_dir):
-            print("[LlamaIndexAgent] Создаю индекс...")
+            print("[LlamaIndexAgent] Анализирую людей...")
             documents = SimpleDirectoryReader(self.docs_dir).load_data()
             self.index = VectorStoreIndex.from_documents(documents) # Settings are global or passed implicitly
             self.index.storage_context.persist(persist_dir=self.index_dir)
         else:
-            print("[LlamaIndexAgent] Загружаю индекс...")
+            print("[LlamaIndexAgent] Загружаю инфо о людях...")
             storage_context = StorageContext.from_defaults(persist_dir=self.index_dir)
             self.index = load_index_from_storage(storage_context) # Settings are global or passed implicitly
 
@@ -46,8 +46,6 @@ class LlamaIndexAgent:
 
 # Example usage (for testing)
 if __name__ == "__main__":
-    # Ensure you have a 'data/raw_docs' directory with some documents
-    # and a .env file with OPENAI_API_KEY
     agent = LlamaIndexAgent(rebuild_index=True) # Set to True to rebuild the index initially
     response = agent.query_knowledge("What is LlamaIndex?")
     print(f"[LlamaIndexAgent] Ответ: {response}")

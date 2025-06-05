@@ -3,7 +3,6 @@
 from langchain.agents import initialize_agent, Tool
 from langchain.chat_models import ChatOpenAI
 from langchain.agents.agent_types import AgentType
-
 from agents.agent_llamaindex import LlamaIndexAgent
 
 
@@ -24,7 +23,7 @@ class LangchainAgent:
         # Создаём Langchain агента, который умеет использовать инструменты
         self.agent = initialize_agent(
             tools=tools,
-            llm=ChatOpenAI(temperature=0, model="gpt-3.5-turbo"),
+            llm=ChatOpenAI(temperature=1, model="gpt-3.5-turbo"),
             agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True
         )
